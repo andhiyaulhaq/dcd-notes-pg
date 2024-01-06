@@ -16,7 +16,7 @@ class NotesService {
 
     const query = {
       text: 'INSERT INTO notes VALUES($1, $2, $3, $4, $5, $6) RETURNING id',
-      values: [id, title, body, tags, createdAt, updatedAt]
+      values: [id, title, body, tags, createdAt, updatedAt],
     };
 
     const result = await this._pool.query(query);
@@ -36,7 +36,7 @@ class NotesService {
   async getNoteById(id) {
     const query = {
       text: 'SELECT * FROM notes WHERE id=$1',
-      values: [id]
+      values: [id],
     };
     const result = await this._pool.query(query);
 
@@ -51,7 +51,7 @@ class NotesService {
     const updatedAt = new Date().toISOString();
     const query = {
       text: 'UPDATE notes SET title=$1, body=$2, tags=$3, updated_at=$4 WHERE id=$5 RETURNING id',
-      values: [title, body, tags, updatedAt, id]
+      values: [title, body, tags, updatedAt, id],
     };
 
     const result = await this._pool.query(query);
@@ -64,7 +64,7 @@ class NotesService {
   async deleteNoteById(id) {
     const query = {
       text: 'DELETE FROM notes WHERE id=$1 RETURNING id',
-      values: [id]
+      values: [id],
     };
 
     const result = await this._pool.query(query);
